@@ -1,0 +1,41 @@
+.header {
+    padding: 40px 0;
+}
+
+.header__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header__link {
+    padding: 12px 32px;
+    border-radius: 8px;
+    background-color: #a6adff;
+    font-size: 20px;
+}
+.header__link:hover {
+    background-color: #b0b6f8;
+}
+
+@media (max-width: 1140px) {
+    .header {
+        padding: 32px 0 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 24px 0 30px;
+    }
+}
+
+@media (max-width: 640px) {
+    .header {
+        padding: 24px 0 20px;
+    }
+
+    .header__link {
+        display: none;
+    }
+}

@@ -1,0 +1,137 @@
+.detail__main {
+    max-width: 780px;
+    border-radius: 16px;
+    background: #FFF;
+    box-shadow: 0px 10px 50px 0px rgba(4, 0, 49, 0.10);
+    padding: 36px 36px 80px;
+}
+
+.detail__field {
+    border-radius: 30px;
+    background: #EAECFF;
+    max-width: max-content;
+    margin-bottom: 4px;
+    padding: 3px 10px;
+}
+
+.detail__header {
+    display: grid;
+    grid-template-columns: 101px 1fr;
+    gap: 12px;
+    margin-bottom: 32px;
+}
+
+.detail__logo {
+    width: 100%;
+    max-height: 101px;
+    grid-row: 1/3;
+}
+
+.detail__company {
+    font-size: 32px;    
+}
+
+.detail__title {
+    width: max-content;
+    height: max-content;
+    padding: 5px;
+    color: #171717;
+    font-size: 20px;
+    font-weight: 400;    
+    border-radius: 4px;
+    background-color: #EAECFF;
+    margin-bottom: 8px;
+}
+
+.detail__info {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+}
+
+.detail__description {
+    width: 465px;
+    line-height: 140%; 
+    margin-bottom: 32px;
+}
+
+.detail__link {
+    color: #2A18FF;
+}
+
+.detail__btn {
+    padding: 4px 16px;
+    border-radius: 16px;
+    background-color: #3390ec;
+    color: #fff;
+}
+
+.detail__btn:hover {
+    background-color: #64aef8;
+}
+
+.detail__tg {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.detail__input {
+    width: 180px;
+    font-size: 14px;
+    height: 32px;
+    padding: 0 16px;
+    border-radius: 16px;
+    border: 1px solid #ccc;
+}
+
+@media (max-width: 940px) {
+    .detail__main {
+        max-width: 680px;
+        padding: 24px 24px 72px;
+    }
+
+    .detail__info {
+        gap: 10px;
+    }
+
+    .detail__description {
+        width: 418px;
+    }
+}
+
+@media (max-width: 640px) {
+    .detail {
+        padding: 24px 15px;
+    }
+
+    .detail__main {
+        max-width: 680px;
+        padding: 24px;
+    }
+
+    .detail__company {
+        font-size: 20px;    
+    }
+
+    .detail__title {
+        font-size: 12px;
+    }
+
+    .detail__info {
+        display: block;
+    }
+
+    .detail__description {
+        width: auto;
+    }
+
+    .detail__fields{
+        margin-bottom: 24px;
+    }
+
+    .detail__btn {
+        padding: 8px 16px;
+    }
+
+}
