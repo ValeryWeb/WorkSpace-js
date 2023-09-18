@@ -110,7 +110,7 @@ const createDetailVacancy = ({id, logo, company, title, description, salary, typ
             :
             `
             <form class="detail__tg">
-            <input class="detail__input" type="text" name="message" placeholder="Ваш Email">
+            <input class="detail__input" type="text" name="message" placeholder="Ваш Email" required>
             <input name="vacancyId" type="hidden" value="${id}">
             <button class="detail__btn">Отправить</button>
             </form>
