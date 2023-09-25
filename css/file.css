@@ -1,0 +1,52 @@
+.file {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.file__wrap-preview {
+    background-color: #fff;
+    min-width: 280px;
+    height: 80px;
+    flex-shrink: 0;
+}
+
+.file__wrap-preview_active {
+    min-width: auto;
+}
+
+.file__active .file__wrap-preview {
+    background-color: transparent;
+}
+
+.file__wrap-btn {
+    position: relative;
+}
+
+.file__label {
+    display: inline-block;
+    padding: 8px 24px;
+    border-radius: 8px;
+    background-color: #a6adff;
+    cursor: pointer;
+    margin-top: 12px;    
+}
+
+.file__label:hover {
+    background-color: #b0b6f8;    
+}
+
+.file__wrap-btn:focus-within .file__label {
+    border: 1px solid;
+    border-color: #4f527c;
+}
+
+.file__input {    
+    opacity: 0;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    top: 50%;
+    left: 50%;
+}

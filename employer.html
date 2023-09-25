@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <link rel="stylesheet" href="index.css">    
+    <title>WorkSpace - Employer Admin Panel</title>
+    <script src="js/just-validate.min.js" defer></script>
+    <script src="js/script.js" defer></script>
+</head>
+<body>
+    <header class="header">
+        <div class="container header__container">
+            <a class="header__logo_link" href="/">
+                <img src="./images/logo.svg" alt="Work Space logo" class="header__logo">
+            </a>
+            <div class="header__links">
+                <a class="header__link" href="index.html#vacancies">Посмотреть вакансии</a>
+            </div>            
+        </div>
+    </header>    
+    <main class="main">
+        <section class="employer">
+            <div class="container">
+                <h1 class="employer__title">Создать вакансию</h1>
+
+                <form class="employer__form">
+                    <div class="employer__file file">
+                        <div class="file__wrap-preview">
+                            <img src="" alt="" class="file__preview">
+                        </div>
+
+                        <div class="file__wrap-btn">
+                            <label for="logo" class="file__label">+ загрузить лого</label>
+                            <input class="file__input" type="file" id="logo" accept="image/png, image/jpg" name="logo" required>
+                        </div>
+                    </div>
+                    <!-- Inputs -->
+                    <fieldset class="employer__fieldset-input">
+                        <div class="employer__wrap-input">
+                            <label class="employer__label" for="company">Название компании</label>
+                            <input class="employer__input" type="text" id="company" name="company" placeholder="Например: MICROSOFT">
+                        </div>
+                        <div class="employer__wrap-input">
+                            <label class="employer__label" for="title">Название вакансии</label>
+                            <input class="employer__input" type="text" id="title" name="title" placeholder="Например: Frontend-разработчик">
+                        </div>
+                        <div class="employer__wrap-input">
+                            <label class="employer__label" for="salary">Заработная плата, руб/мес</label>
+                            <input class="employer__input" type="number" id="salary" name="salary" placeholder="80 000">
+                        </div>
+                        
+                        <div class="employer__wrap-input">
+                            <label class="employer__label" for="location">Город</label>
+                            <input class="employer__input" type="text" id="location" name="location" placeholder="Например: Москва">
+                        </div>
+                        <div class="employer__wrap-input">
+                            <label class="employer__label" for="email">E-mail</label>
+                            <input class="employer__input" type="email" id="email" name="email" placeholder="Добавьте e-mail для связи">
+                        </div>                        
+                    </fieldset>
+
+                    <!-- Textarea -->
+                    <fieldset class="employer__fieldset-textarea">                        
+                            <label class="employer__label" for="description">Описание вакансии</label>
+                            <textarea class="employer__textarea" type="textarea" id="description" name="description" placeholder="Добавьте всю необходимую для соискателя информацию"></textarea>                        
+                    </fieldset>
+
+                    <!-- Checkboxes --> 
+                    <div class="filter__checkboxes flexrow">
+                        <fieldset class="filter__fieldset" id="format">
+
+                            <legend class="filter__legend">Формат</legend> 
+                            
+                            <label class="filter__label checkbox">
+                                <input type="radio" class="checkbox__input" type="checkbox" name="format" value="Офис">
+                                Офис
+                            </label>
+
+                            <label class="filter__label checkbox">
+                                <input type="radio" class="checkbox__input" type="checkbox" name="format" value="Удаленный">
+                                Удаленный
+                            </label>
+
+                            <label class="filter__label checkbox">
+                                <input type="checkbox" class="checkbox__input" type="checkbox" name="format" value="Гибкий">
+                                Гибкий
+                            </label>
+
+                        </fieldset>
+
+                        <fieldset class="filter__fieldset" id="workexp">
+
+                            <legend class="filter__legend">Опыт работы</legend>
+
+                            <label class="filter__label checkbox">
+                                <input type="radio" class="checkbox__input" type="checkbox" name="experience" value="Не важно">
+                                Не важно
+                            </label>
+
+                            <label class="filter__label checkbox">
+                                <input type="radio" class="checkbox__input" type="checkbox" name="experience" value="Без опыта">
+                                Без опыта
+                            </label>
+
+                            <label class="filter__label checkbox">
+                                <input type="radio" class="checkbox__input" type="checkbox" name="experience" value="От 1 года до 3-х лет">
+                                От 1 года до 3-х лет
+                            </label>
+
+                            <label class="filter__label checkbox">
+                                <input type="radio" class="checkbox__input" type="checkbox" name="experience" value="гибкий">
+                                От 3-х лет
+                            </label>
+
+                        </fieldset>
+
+                        <fieldset class="filter__fieldset" id="worktime">
+
+                            <legend class="filter__legend">Занятость</legend>
+
+                            <label class="filter__label checkbox">
+                                <input type="radio" class="checkbox__input" type="checkbox" name="type" value="Полная">
+                                Полная
+                            </label>
+
+                            <label class="filter__label checkbox">
+                                <input type="radio" class="checkbox__input" type="checkbox" name="type" value="Частичная">
+                                Частичная
+                            </label>
+
+                            <label class="filter__label checkbox">
+                                <input type="radio" class="checkbox__input" type="checkbox" name="type" value="Стажировка">
+                                Стажировка
+                            </label>
+
+                            <label class="filter__label checkbox">
+                                <input type="radio" class="checkbox__input" type="checkbox" name="type" value="Проектная работа">
+                                Проектная работа
+                            </label>
+
+                        </fieldset>
+                    </div>
+                    <!-- Submit -->
+                    <div class="filters__buttons">
+                        <button class="filter__button" type="submit">Добавить вакансию</button>
+                        <span class="employer__error">Ошибка. Заполните все поля</span>                                          
+                    </div>                         
+                </form>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="container footer_container">
+            <a class="footer__logo_link" href="/">
+                <img src="./images/logo-footer.svg" alt="Work Space logo" class="footer__logo">
+            </a>
+
+            <p class="footer__copyright">© Work Space, 2023</p>
+
+            <ul class="footer__contacts">
+                <li class="footer__contact">
+                Desingner: <a class="footer__link" href="https://t.me/Mrshmallowww">Anastasia Ilina</a>
+                </li>
+
+                <li class="footer__contact">
+                Developer: <a class="footer__link" href="https://t.me/Vmwebx">Vmwebx</a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+</body>
+</html>

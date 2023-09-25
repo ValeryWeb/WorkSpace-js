@@ -1,4 +1,4 @@
-const API_URL = "https://workspace-methed.vercel.app/"; // Базовый URL для API
+const API_URL = "https://nettle-ringed-chokeberry.glitch.me/"; // Базовый URL для API
 const LOCATION_URL = "api/locations"; // URL для получения списка локаций
 const VACANCY_URL = "api/vacancy"; // URL для получения списка вакансий
 const BOT_TOKEN = "6516125185:AAFf4FQwrfPSLtIy5EtfBYiPPIaQI5BkEfo"; // Токен для бота Telegram
@@ -179,7 +179,8 @@ const observer = new IntersectionObserver (
 
 // Инициализация при загрузке страницы
 const init = () => {
-    const filterForm = document.querySelector('.filter__form');
+    try {
+        const filterForm = document.querySelector('.filter__form');
     const citySelect = document.querySelector('#city');
 
     // cityChoices.js
@@ -242,7 +243,203 @@ const init = () => {
             lastUrl = urlWithParam;
         });
     });
-};
+    } catch (error) {
+        console.log("error: ", error);
+        console.warn("Вы не на странице index.html");
+    }
 
-// Вызов функции инициализации при загрузке страницы
+    // Валидация Employer формы - JustValidate library
+    try {
+        const validateForm = (form) => {
+            const validate = new JustValidate(form, {                
+                // стиль label
+                errorLabelStyle: {
+                    color:"#b81111",                         
+                    // border: "1px solid #B81111",       
+                    // background: "orange",                   
+                },
+                // стиль radio
+                errorFieldStyle: {
+                    color: "#b81111",
+                    border: "1px solid #B81111",                    
+                },
+                tooltip: {
+                    position: "top",
+                }
+            });
+            validate                
+                .addField('#logo', [
+                    {
+                        rule: 'minFilesCount',
+                        value: 1,
+                        errorMessage: "Загрузите лого!"
+                    },      
+                    {
+                        rule: 'files',
+                        value: {
+                          files: {
+                            extensions: ['jpg', 'jpeg', 'png'],
+                            maxSize: 102400,
+                            minSize: 1000,
+                            types: ['image/jpg','image/jpeg', 'image/png'],                                                     
+                          },
+                        },     
+                        errorMessage: 'Загруженные файлы имеют одно или несколько недопустимых свойств (расширение/размер/тип и т. д.).'                   
+                      },                    
+                ])
+                .addField('#company', [
+                    {rule: 'required', errorMessage: "Заполните поле!"},
+                ])
+                .addField('#title', [
+                    {rule: 'required', errorMessage: "Заполните поле!"}
+                ])
+                .addField('#salary', [
+                    {rule: 'required', errorMessage: "Заполните поле!"}
+                ])
+                .addField('#location', [
+                    {rule: 'required', errorMessage: "Заполните поле!"}
+                ])
+                .addField('#email', [
+                    {rule: 'required', errorMessage: "Заполните поле!"},
+                    {rule: 'email', errorMessage: "Email имеет неверный формат!<br> Пример: contact@mail.com"},
+                ])
+                .addField('#description', [
+                    {rule: 'required', errorMessage: "Заполните поле!"},
+                ])
+                .addRequiredGroup('#format', 'Выберите один вариант!', {
+                    successMessage: 'Отлично!',
+                })
+                .addRequiredGroup('#workexp', 'Выберите один вариант!', {
+                    successMessage: 'Отлично!',
+                })
+                .addRequiredGroup('#worktime', 'Выберите один вариант!', {
+                    successMessage: 'Отлично!',
+                });
+
+                return validate;
+                
+        };
+
+    // Функция для файлов лого
+    const fileController = () => {
+        const file = document.querySelector(".file");
+
+        // Получаем элементы превью и инпута файла
+        const preview = file.querySelector(".file__preview");
+        const input = file.querySelector(".file__input");
+
+        // Добавляем обработчик события изменения файла
+        input.addEventListener('change', (event) => {
+            // Проверяем, есть ли выбранные файлы
+            if (event.target.files.length > 0) {
+                // Получаем URL первого выбранного файла
+                const src = URL.createObjectURL(event.target.files[0]);
+
+                // Добавляем класс активности элементу файла
+                file.classList.add('file__active');
+
+                // Устанавливаем URL превью
+                preview.src = src;
+
+                // Показываем превью
+                preview.style.display = 'block';
+            } else {
+                // Скрываем превью
+                preview.style.display = 'none';
+            }
+        });
+    };
+
+    // Функция для формы
+    const formControl = () => {
+        // Получаем элемент формы
+        const form = document.querySelector('.employer__form');
+
+        // Валидируем форму
+        const validate = validateForm(form);
+
+        // Добавляем обработчик события отправки формы
+        form.addEventListener("submit", async (event) => {            
+            event.preventDefault();            
+
+            if (!validate.isValid) {
+                return;
+            }
+
+            try {
+                const formData = new FormData(form)
+                       
+                const response = await fetch (`${API_URL}${VACANCY_URL}`, {
+                method: "POST",
+                body: formData,
+            });
+
+            if (response.ok) {
+                alert("Вакансия добавлена!");
+                window.location.href = "index.html";
+            }
+            } catch (error) {
+                console.log('error: ', error);
+                alert('error: ', error);
+            }            
+        });
+    };
+
+    // Вызываем функции файлов и формы
+    formControl();
+    fileController();
+
+            
+        } catch (error) {
+            console.log("error: ", error);
+            console.warn("Вы не на странице employer.html");
+        }
+        
+    };
+
+    // Вызов функции инициализации при загрузке страницы
 init();
+
+// Функция ограничения ввода чисел
+const inputNumberController = () => {
+    // Получаем все элементы ввода типа "number"
+    const inputNumberElems = document.querySelectorAll('input[type="number"]');
+  
+    // Перебираем все элементы ввода
+    inputNumberElems.forEach((input) => {
+  
+      // Инициализируем переменную для хранения предыдущего значения ввода
+      let previousValue = "";
+  
+      // Добавляем обработчик события ввода для каждого элемента ввода
+      input.addEventListener("keydown", (event) => {
+  
+        // Если нажатая клавиша не является цифрой, то не вызываем событие "input"
+        if (!event.key.match(/[0-9]/)) {
+          event.preventDefault();
+        }
+  
+        // Получаем текущее значение ввода
+        const currentValue = event.target.value;
+
+        // Если введенное значение не является числом, то устанавливаем предыдущее значение ввода
+        if (isNaN(parseInt(currentValue)) && currentValue !== "") {
+          input.value = previousValue;
+        } else {
+          // Обновляем переменную для хранения предыдущего значения ввода
+          previousValue = currentValue;
+        }
+
+        // Обрабатываем нажатие клавиши Backspace
+        if (event.key === "Backspace") {
+            // Удаляем один символ из ввода
+            input.value = input.value.slice(0, -1);
+          }
+          
+      });
+    });
+  };
+  
+  // Вызываем функцию
+  inputNumberController();
+  
